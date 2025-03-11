@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="luiz.alberto">
+        <createTable tableName="pauta">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(500)"/>
+            <column name="tempo_votacao" type="INT"/>
+            <column name="data_inicio" type="TIMESTAMP"/>
+            <column name="data_fim" type="TIMESTAMP"/>
+            <column name="status_pauta" type="VARCHAR(10)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

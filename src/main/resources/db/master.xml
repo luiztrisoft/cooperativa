@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <include file="changelog/202503101710_add_entidade_pauta.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202503101720_add_entidade_associado.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/202503101730_add_entidade_voto.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>
