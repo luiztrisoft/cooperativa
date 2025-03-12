@@ -1,16 +1,16 @@
 package com.cwi.cooperativa.dtos;
 
-import com.cwi.cooperativa.entities.Voto;
 import com.cwi.cooperativa.enums.StatusPauta;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class PautaDTO {
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+    @JsonProperty("id")
     private Long id;
+    @JsonProperty("descricao")
     private String descricao;
     private int tempoVotacao;
     private StatusPauta statusPauta;

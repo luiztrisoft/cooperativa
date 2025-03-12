@@ -10,8 +10,13 @@ spring:
       maximum-pool-size: 10
       minimum-idle: 2
 
+  cache:
+    type: redis
+    redis:
+      time-to-live: 60000
+
   jpa:
-    show-sql: true
+    show-sql: false
     ddl-auto: update
     properties:
       hibernate:
@@ -27,7 +32,15 @@ spring:
 
 logging:
   level:
-    com.zaxxer.hikari: DEBUG
+    root: INFO
+    org.springframework: WARN
+    com.cwi.cooperativa: DEBUG
+  file:
+    name: logs/app.log
+    path: /var/logs/cooperativa
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
 
 server:
   error:

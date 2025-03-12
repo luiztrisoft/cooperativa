@@ -8,7 +8,7 @@ import com.cwi.cooperativa.repositories.VotoRepository;
 import com.cwi.cooperativa.services.AssociadoService;
 import com.cwi.cooperativa.services.PautaService;
 import com.cwi.cooperativa.services.VotoService;
-import com.cwi.cooperativa.services.exceptions.CooperativaException;
+import com.cwi.cooperativa.exceptions.CooperativaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

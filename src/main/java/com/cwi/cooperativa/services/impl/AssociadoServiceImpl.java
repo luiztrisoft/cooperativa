@@ -2,10 +2,12 @@ package com.cwi.cooperativa.services.impl;
 
 import com.cwi.cooperativa.dtos.AssociadoDTO;
 import com.cwi.cooperativa.entities.Associado;
+import com.cwi.cooperativa.exceptions.CooperativaException;
 import com.cwi.cooperativa.mapstruct.AssociadoMapper;
 import com.cwi.cooperativa.repositories.AssociadoRepository;
 import com.cwi.cooperativa.services.AssociadoService;
-import com.cwi.cooperativa.services.exceptions.CooperativaException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
@@ -18,6 +20,8 @@ import java.util.Optional;
 
 @Service
 public class AssociadoServiceImpl implements AssociadoService {
+
+    private static final Logger logger = LoggerFactory.getLogger(AssociadoServiceImpl.class);
 
     @Value("${api.cpf.base-url}")
     private String baseUrl;
@@ -44,7 +48,7 @@ public class AssociadoServiceImpl implements AssociadoService {
 
     @Override
     public AssociadoDTO buscar(Long id) {
-        Associado associado = associadoRepository.findById(id).orElseThrow(() -> new CooperativaException("Pauta não encontrada."));
+        Associado associado = associadoRepository.findById(id).orElseThrow(() -> new CooperativaException("Associado não encontrado."));
         return associadoMapper.toDTO(associado);
     }
 
@@ -66,17 +70,17 @@ public class AssociadoServiceImpl implements AssociadoService {
             String url = baseUrl.concat(cpf);
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, null, String.class);
             if (false) {
-                throw new RuntimeException("O CPF informado não é válido");
+                throw new CooperativaException("O CPF informado não é válido");
             }
         }catch (Exception e){
-            System.out.println(e);
+            logger.info("Exception: {}", e.getMessage());
         }
 
-        //Nota: não encontrei uma api aberta para testar uma requisição externa. Caso haja tempo, posso criar um microserviço apenas com o algoritmo de validação abaixo para fins didáticos
+        //Nota para CWI: não encontrei uma api aberta para testar uma requisição externa. Caso haja tempo, posso criar um microserviço apenas com o algoritmo de validação abaixo para fins didáticos
         if(isValidCPF(cpf)){
             return true;
         }
-        throw new RuntimeException("O CPF informado não é válido");
+        throw new CooperativaException("O CPF informado não é válido");
     }
 
     public static boolean isValidCPF(String cpf) {

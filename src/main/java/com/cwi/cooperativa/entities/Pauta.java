@@ -8,7 +8,6 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
 
-//@Data
 @Entity
 @Table(name = "pauta")
 public class Pauta {

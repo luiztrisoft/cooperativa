@@ -21,5 +21,5 @@ public interface PautaRepository extends JpaRepository<Pauta, Long> {
     @Modifying
     @Transactional
     @Query("UPDATE Pauta p SET p.statusPauta = 'FECHADA' WHERE p.dataFim < :agora AND p.statusPauta = 'ABERTA'")
-    void fecharPautasExpiradas(@Param("agora") LocalDateTime agora);
+    int fecharPautasExpiradas(@Param("agora") LocalDateTime agora);
 }
