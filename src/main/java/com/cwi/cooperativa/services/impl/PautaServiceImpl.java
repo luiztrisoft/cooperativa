@@ -104,7 +104,7 @@ public class PautaServiceImpl implements PautaService {
         return resultado;
     }
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 10 * 60000)
     @Transactional
     @Async
     public void fecharPautasExpiradas() {
